@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import LabelStudio from "@heartexlabs/label-studio";
 import '@heartexlabs/label-studio/build/static/css/main.css'; // Import Label Studio's CSS
 
-const getMapSnapshotUrl = (lat, lng, zoom = 18, size = '600x300', type = 'hybrid') => {
+const getMapSnapshotUrl = (lat, lng, zoom = 18, size = '640x600', type = 'hybrid') => {
   const apiKey = process.env.REACT_APP_GOOGLE_API_KEY;
   return `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=${zoom}&size=${size}&maptype=${type}&key=${apiKey}`;
 };
@@ -12,8 +12,12 @@ const MapSnapshot = ({ lat, lng }) => {
   const mapImageUrl = getMapSnapshotUrl(lat, lng);
 
   useEffect(() => {
+
+    if (window.labelStudio) {
+      window.labelStudio.destroy();
+    }
     // Initialize Label Studio inside useEffect
-    new LabelStudio('label-studio-container', {
+   window.labelStudio = new LabelStudio('label-studio-container', {
       config: `
         <View>
           <Image name="image" value="$image"/>
@@ -43,6 +47,13 @@ const MapSnapshot = ({ lat, lng }) => {
         console.log("Annotation submitted", annotation);
       },
     });
+
+    return () => {
+      if (window.labelStudio) {
+        window.labelStudio.destroy();
+      }
+    }
+  
   }, [mapImageUrl]); // Only re-run if mapImageUrl changes
 
   return (
