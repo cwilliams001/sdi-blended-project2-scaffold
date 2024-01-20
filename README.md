@@ -1,5 +1,10 @@
 # Data Annotation Project
 
+## Example Video
+
+[readme-video.webm](https://github.com/cwilliams001/sdi-blended-project2-scaffold/assets/82992893/1b7009eb-fd44-43e4-b252-b422041fea7a)
+
+
 ## Overview
 This project integrates Label Studio into a React application for annotation purposes. It allows users to annotate images using Label Studio and then sends these annotations to a Node.js backend server. The server stores the annotations and provides an endpoint to view all received annotations.
 
