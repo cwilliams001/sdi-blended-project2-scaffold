@@ -1,7 +1,7 @@
+import React, { useEffect, useRef } from 'react';
+import LabelStudio from 'label-studio';
+import 'label-studio/build/static/css/main.css';
 
-import React, { useEffect } from "react";
-import LabelStudio from "@heartexlabs/label-studio";
-import '@heartexlabs/label-studio/build/static/css/main.css'; // Import Label Studio's CSS
 
 const getMapSnapshotUrl = (lat, lng, zoom = 18, size = '640x600', type = 'hybrid') => {
   const apiKey = process.env.REACT_APP_GOOGLE_API_KEY;
@@ -9,116 +9,83 @@ const getMapSnapshotUrl = (lat, lng, zoom = 18, size = '640x600', type = 'hybrid
 };
 
 const MapSnapshot = ({ lat, lng }) => {
-  const mapImageUrl = getMapSnapshotUrl(lat, lng);
+  const labelStudioContainerRef = useRef();
+
 
   useEffect(() => {
-
-    if (window.labelStudio) {
-      window.labelStudio.destroy();
+    if (labelStudioContainerRef.current) {
+      initializeLabelStudio();
     }
-    // Initialize Label Studio inside useEffect
-   window.labelStudio = new LabelStudio('label-studio-container', {
-      config: `
-        <View>
-          <Image name="image" value="$image"/>
-          <PolygonLabels name="label" toName="image">
-            <Label value="Object" background="green"/>
-          </PolygonLabels>
-        </View>
-      `,
-      interfaces: [
-        "panel", "update", "submit", "controls", "side-column",
-      ],
-      task: {
-        annotations: [],
-        predictions: [],
-        id: 1,
-        data: {
-          image: mapImageUrl
-        }
-      },
-      onLabelStudioLoad: (LS) => {
-        const c = LS.annotationStore.addAnnotation({
-          userGenerate: true
-        });
-        LS.annotationStore.selectAnnotation(c.id);
-      },
-      onSubmitAnnotation: (LS, annotation) => {
+  }, [lat, lng]); // Reinitialize when lat or lng changes
+
+
+ const initializeLabelStudio = () => {
+  console.log("Start...");
+  const mapImageUrl = getMapSnapshotUrl(lat, lng);
+  const labelStudioConfig = {
+    config: `<View>
+  <Image name="image" value="$image" />
+  <PolygonLabels name="labels" toName="image">
+    <Label value="Tank" />
+    <Label value="Trench" />
+  </PolygonLabels>
+    </View>`,
+    interfaces: [
+      "panel",
+      "update",
+      "submit",
+      "controls",
+      "side-column",
+      "annotations:menu",
+      "annotations:add-new",
+      "annotations:delete",
+      "predictions:menu"
+    ],
+    user: {
+      pk: 1,
+      firstName: "Pvt",
+      lastName: "Snuffy"
+    },
+    task: {
+      annotations: [],
+      predictions: [],
+      id: 1,
+      data: {
+        image: mapImageUrl     }
+    },
+    onLabelStudioLoad: function (LS) {
+      var c = LS.annotationStore.addAnnotation({
+        userGenerate: true
+      });
+      LS.annotationStore.selectAnnotation(c.id);
+    },
+    onSubmitAnnotation: (LS, annotation) => {
         console.log("Annotation submitted", annotation);
-      },
-    });
-
-    return () => {
-      if (window.labelStudio) {
-        window.labelStudio.destroy();
-      }
+        fetch ('http://localhost:3001/submit-annotation', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(annotation)
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Success:', data);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        })
     }
-  
-  }, [mapImageUrl]); // Only re-run if mapImageUrl changes
+  };
 
-  return (
-    <div id="label-studio-container" style={{ height: '100%', width: '100%' }}>
-      {/* Container where Label Studio will be rendered */}
+ new LabelStudio(labelStudioContainerRef.current.id, labelStudioConfig);
+    console.log("Label Studio Initialized");
+};
+
+return (
+    <div ref={labelStudioContainerRef} id="label-studio" style={{ width: '100%', height: '400px' }}>
     </div>
   );
 };
 
 export default MapSnapshot;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React from 'react';
-// import { ReactPictureAnnotation } from 'react-picture-annotation';
-
-// const getMapSnapshotUrl = (lat, lng, zoom = 18, size = '640x600', type = 'hybrid') => {
-//   const apiKey = process.env.REACT_APP_GOOGLE_API_KEY; // Replace with your API key
-//   return `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=${zoom}&size=${size}&maptype=${type}&key=${apiKey}`;
-// };
-
-// const MapSnapshot = ({ lat, lng}) => {
-//   const mapImageUrl = getMapSnapshotUrl(lat, lng, 18);
-  
-//   const onSelect = selectedId => console.log(selectedId);
-//   const onChange = data => console.log(data);
-
-  
-
-//   return (
-//   <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
-//     <div style={{ flexGrow: 0}}>
-//       <ReactPictureAnnotation
-//         image={mapImageUrl}
-//         onSelect={onSelect}
-//         onChange={onChange}
-//         width={640}
-//         height={600}
-        
-//         style= {{objectFit: 'contain'}}
-//       />
-//     </div>
-    
-//   </div>
-// );
-
-// };
-
-// export default MapSnapshot;

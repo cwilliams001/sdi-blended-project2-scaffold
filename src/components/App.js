@@ -1,16 +1,20 @@
+
 import React from 'react';
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import Home from './Home';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import MapSnapshot from './MapSnapshot'; 
 
-const App = () => {
 
+export default function App() {
+  // Example coordinates
+  const latitude = 40.7128; 
+  const longitude = -74.0060; 
   return (
     <Router>
+    <div className="App">
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<MapSnapshot lat={latitude} lng={longitude} />} />
       </Routes>
+    </div>
     </Router>
   );
-};
-
-export default App;
+}
