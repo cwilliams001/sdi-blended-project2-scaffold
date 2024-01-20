@@ -1,32 +1,76 @@
-# Project 2 Scaffold
+# Data Annotation Project
 
-We have created a basic scaffold for you to start working on right away.
+## Overview
+This project integrates Label Studio into a React application for annotation purposes. It allows users to annotate images using Label Studio and then sends these annotations to a Node.js backend server. The server stores the annotations and provides an endpoint to view all received annotations.
 
-Fork this scaffold repository in Github and clone it locally onto your machine. 
+## Prerequisites
+- Node.js
+- npm (Node Package Manager)
+- React.js
 
-Once cloned: 
-* open this repo with VSCode
-* run `npm install` to install all necessary dependencies
-* run `npm start` to start up the application 
+## Installation
 
+### Frontend
+1. **Clone the repository:**
+   ```bash
+   git clone <repository-url>
+   ```
 
-We have already set up the project with *React Testing Library*. 
-We have also created some sample tests, so you can practice the Red-Green-Refactor strategy right away. 
+2. **Navigate to the frontend directory:**
+   ```bash
+   cd path/to/frontend
+   ```
 
-## React Testing Library test
+3. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-To run React Testing Library in this project, you just need to enter `$ npm run test` in the command line within the project.
+4. **Set up environment variables:**
+   - Create a `.env` file in the root of the frontend directory.
+   - Add your Google API Key for map snapshots:
+     ```env
+     REACT_APP_GOOGLE_API_KEY=your_google_api_key
+     ```
 
-Go ahead and remove from your `src/App.js` file the code that looks similar to this: `<h1>Project 2</h1>`.
+### Backend
+1. **Navigate to the backend directory:**
+   ```bash
+   cd path/to/backend
+   ```
 
-Now run `$ npm run test` in your command line again. 
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-Does the test fail? If it does, your RTL test is working. 
+## Running the Application
 
-You can make it pass again by returning the heading back into the code. 
+### Start the Backend Server
+1. **Navigate to the backend directory:**
+   ```bash
+   cd path/to/backend
+   ```
 
+2. **Start the server:**
+   ```bash
+   npm start
+   ```
 
-- - - 
+### Start the Frontend Application
+1. **Open a new terminal window/tab.**
+2. **Navigate to the frontend directory:**
+   ```bash
+   cd path/to/frontend
+   ```
 
+3. **Start the React application:**
+   ```bash
+   npm start
+   ```
 
-> **_NOTE:_** You will not need these two particular tests for successfully completing Project 2 - they are only meant as examples of the setup for testing with RTL. Once you have observed them, feel free to remove them along with the `<h1>Project 2</h1>` heading from your code.   
+### Usage
+- Open your web browser and navigate to `http://localhost:3000`.
+- Use the Label Studio interface to annotate images.
+- Submit your annotations, which will be sent to the backend server.
+- To view received annotations, navigate to `http://localhost:3001/annotations` in your browser.
