@@ -2,9 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import LabelStudio from 'label-studio';
 import 'label-studio/build/static/css/main.css';
 
-const getMapSnapshotUrl = (lat, lng, zoom = 18, size = '640x600', type = 'hybrid') => {
+const getMapSnapshotUrl = (lat, lng, zoom = 17, scale=4, size = '940x900', type = 'hybrid') => {
   const apiKey = process.env.REACT_APP_GOOGLE_API_KEY;
-  return `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=${zoom}&size=${size}&maptype=${type}&key=${apiKey}`;
+  return `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=${zoom}&scale=${scale}&size=${size}&maptype=${type}&key=${apiKey}`;
 };
 
 const MapSnapshot = () => {
@@ -41,7 +41,7 @@ const initializeLabelStudio = () => {
   const mapImageUrl = getMapSnapshotUrl(latitude, longitude);
   const labelStudioConfig = {
     config: `<View>
-  <Image name="image" value="$image" />
+  <Image name="image" value="$image" zoomControl="true"/>
   <${labelType} name="labels" toName="image">
     <Label value="Tank" />
     <Label value="Truck" />
