@@ -44,6 +44,10 @@ const initializeLabelStudio = () => {
   <Image name="image" value="$image" />
   <${labelType} name="labels" toName="image">
     <Label value="Tank" />
+    <Label value="Truck" />
+    <Label value="Airplane" />
+    <Label value="Helicopter" />
+    <Label value="Person" />
     <Label value="Trench" />
   </${labelType}>
     </View>`,
