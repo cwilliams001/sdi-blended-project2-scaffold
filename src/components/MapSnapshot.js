@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import LabelStudio from 'label-studio';
 import 'label-studio/build/static/css/main.css';
 
@@ -10,13 +10,14 @@ const getMapSnapshotUrl = (lat, lng, zoom = 18, size = '640x600', type = 'hybrid
 
 const MapSnapshot = ({ lat, lng }) => {
   const labelStudioContainerRef = useRef();
+  const [labelType, setLabelType] = useState('PolygonLabels');
 
 
   useEffect(() => {
     if (labelStudioContainerRef.current) {
       initializeLabelStudio();
     }
-  }, [lat, lng]); // Reinitialize when lat or lng changes
+  }, [lat, lng, labelType]); // Reinitialize when lat or lng changes
 
 
  const initializeLabelStudio = () => {
@@ -25,10 +26,10 @@ const MapSnapshot = ({ lat, lng }) => {
   const labelStudioConfig = {
     config: `<View>
   <Image name="image" value="$image" />
-  <PolygonLabels name="labels" toName="image">
+  <${labelType} name="labels" toName="image">
     <Label value="Tank" />
     <Label value="Trench" />
-  </PolygonLabels>
+  </${labelType}>
     </View>`,
     interfaces: [
       "panel",
@@ -83,9 +84,34 @@ const MapSnapshot = ({ lat, lng }) => {
 };
 
 return (
-    <div ref={labelStudioContainerRef} id="label-studio" style={{ width: '100%', height: '400px' }}>
+  <div>
+      <fieldset style={{ border: 'none', marginBottom: '15px' }}>
+        <legend style={{
+          fontSize: '1.5em',
+          fontWeight: 'bold',
+          marginBottom: '10px'
+        }}>Label Options</legend>
+        <label htmlFor="labelType" style={{ marginRight: '10px' }}>Label Type:</label>
+        <select
+          id="labelType"
+          value={labelType}
+          onChange={(e) => setLabelType(e.target.value)}
+          style={{
+            padding: '5px',
+            fontSize: '1em',
+            margin: '5px 0',
+            display: 'block'
+          }}
+        >
+          <option value="PolygonLabels">Polygon Labels</option>
+          <option value="RectangleLabels">Rectangle Labels</option>
+        </select>
+        {/* Future lat/long inputs will go here */}
+      </fieldset>
+      <div ref={labelStudioContainerRef} id="label-studio" style={{ width: '100%', height: '400px' }}>
+      </div>
     </div>
   );
-};
+}
 
 export default MapSnapshot;
