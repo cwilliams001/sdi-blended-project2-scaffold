@@ -23,7 +23,7 @@ This project integrates Label Studio into a React application for annotation pur
 
 2. **Navigate to the frontend directory:**
    ```bash
-   cd path/to/sdi-blended-project2-scaffold
+   cd sdi-blended-project2-scaffold
    ```
 
 3. **Install dependencies:**
@@ -41,7 +41,7 @@ This project integrates Label Studio into a React application for annotation pur
 ### Backend
 1. **Navigate to the backend directory:**
    ```bash
-   cd path/to/backend
+   cd backend
    ```
 
 2. **Install dependencies:**
@@ -54,19 +54,19 @@ This project integrates Label Studio into a React application for annotation pur
 ### Start the Backend Server
 1. **Navigate to the backend directory:**
    ```bash
-   cd path/to/backend
+   cd backend
    ```
 
 2. **Start the server:**
    ```bash
-   npm start
+   node server.js
    ```
 
 ### Start the Frontend Application
 1. **Open a new terminal window/tab.**
 2. **Navigate to the frontend directory:**
    ```bash
-   cd path/to/frontend
+   cd sdi-blended-project2-scaffold
    ```
 
 3. **Start the React application:**
