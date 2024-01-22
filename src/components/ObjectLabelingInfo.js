@@ -3,21 +3,16 @@ import styles from './ObjectLabelingInfo.module.css';
 
 
 const images = {
-    objectLabeling: '/images/object_labeling/object_labeling_overview.png',
-    yoloFineTuning: '/images/object_labeling/yolo_fine_tuning.png',
-    bestPractices: '/images/object_labeling/best_practices.jpg'
+    objectLabeling: '/object_labeling/object_labeling_overview.png',
+    yoloFineTuning: '/object_labeling/yolo_fine_tuning.png',
+    bestPractices: '/object_labeling/best_practices.jpg'
 };
 
-function ObjectLabelingInfo() {
-    return (
-        <div className={styles.objectLabelingInfo}>
-        </div>
-    );
-}
+
 
 function ObjectLabelingInfo() {
     return (
-        <div>
+        <div  className={styles.objectLabelingInfo}>  
             <section>
                 <h2>Overview of Object Labeling</h2>
                 <p>
