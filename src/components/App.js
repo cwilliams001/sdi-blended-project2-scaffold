@@ -6,7 +6,7 @@ import ObjectLabelingInfo from './ObjectLabelingInfo';
 import AnnotationsPage from './AnnotationsPage';
 
 export default function App() {
-  // Define some basic inline styles for the navigation to match MapSnapshot style
+
   const navStyle = {
     display: 'flex',
     justifyContent: 'center',
