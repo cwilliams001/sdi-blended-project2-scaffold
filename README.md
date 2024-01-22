@@ -2,7 +2,8 @@
 
 ## Example Video
 
-[readme-video.webm](https://github.com/cwilliams001/sdi-blended-project2-scaffold/assets/82992893/1b7009eb-fd44-43e4-b252-b422041fea7a)
+[readme-video02.webm](https://github.com/cwilliams001/sdi-blended-project2-scaffold/assets/82992893/b461f059-734d-4acf-824b-5a734e6f7e4e)
+
 
 
 ## Overview
