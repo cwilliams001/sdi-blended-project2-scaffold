@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import LabelStudio from 'label-studio';
 import 'label-studio/build/static/css/main.css';
-//import HomePage from './Home';
 
 const getMapSnapshotUrl = (lat, lng, zoom = 18, size = '640x600', type = 'hybrid') => {
   const apiKey = process.env.REACT_APP_GOOGLE_API_KEY;

@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
-const port = 3001; // Ensure this port is free or change it as needed
+const port = 3001;
 
 let annotations = [];
 
@@ -16,9 +16,7 @@ app.post('/submit-annotation', (req, res) => {
 });
 
 app.get('/annotations', (req, res) => {
-    let html = '<h1>Received Annotations</h1>';
-    html += '<pre>' + JSON.stringify(annotations, null, 2) + '</pre>';
-    res.send(html);
+    res.json(annotations);
 });
 
 app.listen(port, () => {
