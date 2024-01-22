@@ -23,7 +23,7 @@ This project integrates Label Studio into a React application for annotation pur
 
 2. **Navigate to the frontend directory:**
    ```bash
-   cd path/to/frontend
+   cd path/to/sdi-blended-project2-scaffold
    ```
 
 3. **Install dependencies:**
