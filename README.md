@@ -4,7 +4,14 @@
 
 [readme-video02.webm](https://github.com/cwilliams001/sdi-blended-project2-scaffold/assets/82992893/b461f059-734d-4acf-824b-5a734e6f7e4e)
 
+## Purpose
+The purpose of this application is to enable users to label data for mission-critical tasks. 
 
+## Kanban Board
+Our Kanban Board can be found here. https://trello.com/invite/b/2G0ipzll/ATTI8ac71bc6aedae65ebf5a1225132f88596E2CCFA4/project-two 
+
+## Wireframe/User Story drafts
+Our Wireframe and user story drafts can be found here. https://miro.com/welcomeonboard/RlptN2NsVGl6NERTZm1XRmJUNWhrMEQyQ0pVeWFURzVKMVRkQXREREFkOFF6SzNRYnRjVUUxckZFRklCaDFJb3wzNDU4NzY0NTcxODU1MjgyNzE3fDI=?share_link_id=723961214950 
 
 ## Overview
 This project integrates Label Studio into a React application for annotation purposes. It allows users to annotate images using Label Studio and then sends these annotations to a Node.js backend server. The server stores the annotations and provides an endpoint to view all received annotations.
