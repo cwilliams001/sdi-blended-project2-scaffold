@@ -12,6 +12,7 @@ Our Kanban Board can be found here. https://trello.com/invite/b/2G0ipzll/ATTI8ac
 
 ## Wireframe/User Story drafts
 Our Wireframe and user story drafts can be found here. https://miro.com/welcomeonboard/RlptN2NsVGl6NERTZm1XRmJUNWhrMEQyQ0pVeWFURzVKMVRkQXREREFkOFF6SzNRYnRjVUUxckZFRklCaDFJb3wzNDU4NzY0NTcxODU1MjgyNzE3fDI=?share_link_id=723961214950 
+![Wireframe](https://github.com/cwilliams001/sdi-blended-project2-scaffold/assets/59510205/2ec0eb8a-4e3f-43db-837f-2fb102f13033)
 
 ## Overview
 This project integrates Label Studio into a React application for annotation purposes. It allows users to annotate images using Label Studio and then sends these annotations to a Node.js backend server. The server stores the annotations and provides an endpoint to view all received annotations.
